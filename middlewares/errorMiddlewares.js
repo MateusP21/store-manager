@@ -1,7 +1,11 @@
 function errorHandler(err, _req, res, _next) {
   const { name, message } = err;
+  console.log();
   switch (name) {
     case 'ValidationError':
+      if (err.details[0].type === 'string.min') {
+        res.status(422).json({ message });
+      }
       res.status(400).json({ message });
       break;
     case 'NotFoundError':

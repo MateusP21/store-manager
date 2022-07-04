@@ -4,6 +4,7 @@ const chaiAsPromised = require('chai-as-promised');
 const chai = require('chai');
 const productService = require('../../../services/productService');
 const productController = require('../../../controllers/productController');
+const productModel = require('../../../models/productModel');
 
 chai.use(chaiAsPromised);
 
@@ -38,6 +39,7 @@ describe('productController', () => {
       const status = sinon.stub().callsFake(() => res);
       const json = sinon.stub().returns();
       const res = { status, json };
+      sinon.stub(productModel, 'exists').resolves(true);
       sinon.stub(productService, 'getById').resolves([mockProducts]);
       await productController.getById(req, res);
       chai.expect(res.status.getCall(0).args[0]).to.equal(200);

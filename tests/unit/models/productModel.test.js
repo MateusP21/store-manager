@@ -26,14 +26,12 @@ describe('productModel', () => {
   describe('getProductById', () => {
     it('quando chamado espera que se retorne um objeto', () => {
       sinon.stub(db, 'query').resolves(mockProducts[0]);
-      return chai
-        .expect(productModel.getProductById(1))
-        .to.eventually.be.a('object');
+      chai.expect(productModel.getProductById(1)).to.eventually.be.a('object');
     });
 
     it('espera se que o objeto possua um id', () => {
       sinon.stub(db, 'query').resolves(mockProducts[0]);
-      return chai
+      chai
         .expect(productModel.getProductById(1))
         .to.eventually.have.property('id');
     });

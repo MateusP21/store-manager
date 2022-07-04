@@ -1,4 +1,4 @@
-const errorHandler = (err, _req, res, _next) => {
+function errorHandler(err, _req, res, _next) {
   const { name, message } = err;
   switch (name) {
     case 'ValidationError':
@@ -11,6 +11,6 @@ const errorHandler = (err, _req, res, _next) => {
       res.status(500).json({ message });
       break;
   }
-};
+}
 
 module.exports = errorHandler;

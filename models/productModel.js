@@ -1,6 +1,14 @@
 const db = require('./db');
 
 const productModel = {
+  async add(name) {
+    const query = `
+    INSERT INTO StoreManager.products (name) VALUES(?)
+    `;
+    const [{ insertId }] = await db.query(query, [name]);
+    return insertId;
+  },
+
   async getAllProducts() {
     const query = `
     SELECT *
@@ -11,7 +19,8 @@ const productModel = {
 
   async getProductById(id) {
     const query = 'SELECT * FROM StoreManager.products WHERE id = ?';
-    const product = await db.query(query, [id]);
+    const [[product]] = await db.query(query, [id]);
+    console.log(product);
     return product;
   },
 

@@ -1,7 +1,15 @@
+const Joi = require('joi');
 const { NotFoundError } = require('../errors');
 const productModel = require('../models/productModel');
+const runSchema = require('../utils/validationSchema');
 
 const productService = {
+  validateBodyAdd: runSchema(
+    Joi.object({
+      name: Joi.string().required().min(5),
+    }),
+  ),
+
   async getAll() {
     const products = await productModel.getAllProducts();
     return products;
@@ -10,6 +18,11 @@ const productService = {
   async getById(id) {
     const products = await productModel.getProductById(id);
     return products;
+  },
+
+  async add({ name }) {
+    const product = await productModel.add(name);
+    return product;
   },
 
   async checkIfExists(id) {

@@ -40,10 +40,10 @@ describe('productController', () => {
       const json = sinon.stub().returns();
       const res = { status, json };
       sinon.stub(productModel, 'exists').resolves(true);
-      sinon.stub(productService, 'getById').resolves([mockProducts]);
+      sinon.stub(productService, 'getById').resolves(mockProducts);
       await productController.getById(req, res);
       chai.expect(res.status.getCall(0).args[0]).to.equal(200);
-      chai.expect(res.json.getCall(0).args[0]).to.equal(mockProducts[0]);
+      chai.expect(res.json.getCall(0).args[0]).to.equal(mockProducts);
     });
   });
 });

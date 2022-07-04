@@ -17,8 +17,9 @@ const productModel = {
 
   async exists(id) {
     const query = 'SELECT 1 FROM StoreManager.products WHERE id = ?';
-    const item = await db.query(query, [id]);
-    return item;
+    const [[item]] = await db.query(query, [id]);
+    const bool = Boolean(item);
+    return bool;
   },
 };
 

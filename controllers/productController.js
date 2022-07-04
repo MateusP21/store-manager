@@ -10,7 +10,6 @@ const productController = {
     const id = Number(req.params.id);
     await productService.checkIfExists(id);
     const [[products]] = await productService.getById(id);
-    console.log(products);
     return res.status(200).json(products);
   },
 };

@@ -8,8 +8,8 @@ const productController = {
   },
 
   async addProduct(req, res) {
-    await validateBodyAdd(req.body);
-    const id = await productService.add(req.body);
+    const data = await validateBodyAdd(req.body);
+    const id = await productService.add(data);
     const item = await productService.getById(id);
     return res.status(201).json(item);
   },

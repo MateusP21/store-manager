@@ -4,16 +4,13 @@ function errorHandlerMiddleware(err, _req, res, _next) {
   switch (name) {
     case 'ValidationError':
       if (err.details[0].type.includes('min')) {
-        res.status(422).json({ message });
+        return res.status(422).json({ message });
       }
-      res.status(400).json({ message });
-      break;
+      return res.status(400).json({ message });
     case 'NotFoundError':
-      res.status(404).json({ message });
-      break;
+      return res.status(404).json({ message });
     default:
-      res.sendStatus(500);
-      break;
+      return res.sendStatus(500);
   }
 }
 

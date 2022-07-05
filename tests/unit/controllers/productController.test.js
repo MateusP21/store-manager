@@ -15,15 +15,15 @@ describe('productController', () => {
       sinon.stub(productService, 'getAll').rejects();
       return chai.expect(productController.getAll()).to.eventually.be.rejected;
     });
+
     it('deve chamar o res.status com 200 e o res.json', async () => {
-      const res = {
-        status: sinon.stub().callsFake(() => res),
-        json: sinon.stub().returns(),
-      };
-      sinon.stub(productService, 'getAll').resolves([]);
+      const status = sinon.stub().callsFake(() => res);
+      const json = sinon.stub().returns();
+      const res = { status, json };
+      sinon.stub(productService, 'getAll').resolves([mockProducts]);
       await productController.getAll({}, res);
       chai.expect(res.status.getCall(0).args[0]).to.equal(200);
-      return chai.expect(res.json.getCall(0).args[0]).to.deep.equal([]);
+      chai.expect(res.json.getCall(0).args[0]).to.deep.equal(mockProducts);
     });
   });
 
@@ -50,14 +50,14 @@ describe('productController', () => {
     it('deve chamar o res.status com 200 e o res.json', async () => {
       sinon.stub(productService, 'validateParamsId').resolves({ id: 1 });
       sinon.stub(productService, 'checkIfExists').resolves();
-      sinon.stub(productService, 'getById').resolves([]);
+      sinon.stub(productService, 'getById').resolves({});
       const res = {
         status: sinon.stub().callsFake(() => res),
         json: sinon.stub().returns(),
       };
       await productController.getById({ params: { id: 1 } }, res);
       chai.expect(res.status.getCall(0).args[0]).to.equal(200);
-      chai.expect(res.json.getCall(0).args[0]).to.deep.equal([]);
+      chai.expect(res.json.getCall(0).args[0]).to.deep.equal({});
     });
   });
 
@@ -181,7 +181,7 @@ describe('productController', () => {
         sendStatus: sinon.stub().callsFake(() => res),
       };
       await productController.deleteProduct({ params: { id: 1 } }, res);
-      chai.expect(res.sendStatusS.getCall(0).args[0]).to.equal(204);
+      chai.expect(res.sendStatus.getCall(0).args[0]).to.equal(204);
     });
   });
 });

@@ -1,7 +1,8 @@
-const runSchema = (schema) => async (unknown) => {
-  const { error, value } = schema.validate(unknown);
-  if (error) throw error;
-  return value;
+const runSchema = (schema) => async (value) => {
+  console.log(value);
+  const result = await schema.validateAsync(value);
+
+  return result;
 };
 
 module.exports = runSchema;

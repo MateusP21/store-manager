@@ -6,7 +6,7 @@ const runSchema = require('../utils/validationSchema');
 const productService = {
   validateBodyAdd: runSchema(
     Joi.object({
-      name: Joi.string().required().min(5),
+      name: Joi.string().min(5).required(),
     }),
   ),
 

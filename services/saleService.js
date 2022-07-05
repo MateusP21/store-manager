@@ -38,8 +38,8 @@ const saleService = {
   },
 
   async getById(id) {
-    const products = await saleModel.getSaleById(id);
-    return products;
+    const sale = await saleModel.getSaleById(id);
+    return sale;
   },
 
   async checkSale(id) {

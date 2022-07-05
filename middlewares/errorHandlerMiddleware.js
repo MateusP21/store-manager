@@ -1,4 +1,4 @@
-function errorHandler(err, _req, res, _next) {
+function errorHandlerMiddleware(err, _req, res, _next) {
   const { name, message } = err;
 
   switch (name) {
@@ -17,4 +17,4 @@ function errorHandler(err, _req, res, _next) {
   }
 }
 
-module.exports = errorHandler;
+module.exports = errorHandlerMiddleware;

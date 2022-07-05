@@ -5,12 +5,17 @@
     "containerId": "",
     "name": "localhost:3000/products",
     "url": "localhost:3000/products",
-    "method": "GET",
+    "method": "POST",
     "sortNum": 0,
     "created": "2022-07-05T02:32:33.632Z",
-    "modified": "2022-07-05T02:32:33.781Z",
+    "modified": "2022-07-05T03:51:38.678Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"name\":\"1256\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -22,7 +27,7 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-07-05T02:32:46.660Z",
-    "modified": "2022-07-05T02:32:46.741Z",
+    "modified": "2022-07-05T03:38:17.409Z",
     "headers": [],
     "params": [],
     "tests": []

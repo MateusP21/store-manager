@@ -40,12 +40,12 @@ describe('productModel', () => {
   describe('exists', () => {
     it('deve retornar false se não encontrar o item', () => {
       sinon.stub(db, 'query').resolves([[]]);
-      chai.expect(productModel.exists(1)).to.eventually.be.false;
+      return chai.expect(productModel.exists(1)).to.eventually.be.false;
     });
 
     it('deve retornar true se encontrar o item', () => {
       sinon.stub(db, 'query').resolves([[{}]]);
-      chai.expect(productModel.exists(1)).to.eventually.be.true;
+      return chai.expect(productModel.exists(1)).to.eventually.be.true;
     });
   });
 });

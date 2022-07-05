@@ -26,6 +26,13 @@ const productController = {
     return res.status(200).json(item);
   },
 
+  async deleteProduct(req, res) {
+    const { id } = await validateParamsId(req.params);
+    await productService.checkIfExists(id);
+    await productService.delete(id);
+    return res.sendStatus(204);
+  },
+
   async getById(req, res) {
     const { id } = await validateParamsId(req.params);
     await productService.checkIfExists(id);

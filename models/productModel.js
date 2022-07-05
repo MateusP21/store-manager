@@ -23,6 +23,12 @@ const productModel = {
     return product;
   },
 
+  async delete(id) {
+    const query = `
+    DELETE FROM StoreManager.products WHERE id = ?`;
+    await db.query(query, [id]);
+  },
+
   async getAllProducts() {
     const query = `
     SELECT *

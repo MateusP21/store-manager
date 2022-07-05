@@ -8,4 +8,5 @@ productRoutes.get('/:id', productController.getById);
 
 productRoutes.post('/', productController.addProduct);
 productRoutes.put('/:id', productController.editProduct);
+productRoutes.delete('/:id', productController.deleteProduct);
 module.exports = productRoutes;

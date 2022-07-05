@@ -12,7 +12,7 @@ const productService = {
 
   validateParamsId: runSchema(
     Joi.object({
-      id: Joi.number().required(),
+      id: Joi.number().positive().integer().required(),
     }),
   ),
 

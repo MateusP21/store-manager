@@ -9,6 +9,20 @@ const productModel = {
     return insertId;
   },
 
+  async edit(id, name) {
+    const query = `
+    UPDATE 
+      StoreManager.products 
+    SET
+      name = ?
+    WHERE 
+      id = ?
+    `;
+
+    const product = await db.query(query, [name, id]);
+    return product;
+  },
+
   async getAllProducts() {
     const query = `
     SELECT *

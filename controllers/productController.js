@@ -1,4 +1,7 @@
-const { validateBodyAdd } = require('../services/productService');
+const {
+  validateBodyAdd,
+  validateParamsId,
+} = require('../services/productService');
 const productService = require('../services/productService');
 
 const productController = {
@@ -14,8 +17,17 @@ const productController = {
     return res.status(201).json(item);
   },
 
+  async editProduct(req, res) {
+    const { id } = await validateParamsId(req.params);
+    await productService.checkIfExists(id);
+    const data = await validateBodyAdd(req.body);
+    await productService.edit(id, data);
+    const item = await productService.getById(id);
+    return res.status(200).json(item);
+  },
+
   async getById(req, res) {
-    const id = Number(req.params.id);
+    const { id } = await validateParamsId(req.params);
     await productService.checkIfExists(id);
     const products = await productService.getById(id);
     return res.status(200).json(products);

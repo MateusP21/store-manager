@@ -10,6 +10,12 @@ const productService = {
     }),
   ),
 
+  validateParamsId: runSchema(
+    Joi.object({
+      id: Joi.number().required(),
+    }),
+  ),
+
   async getAll() {
     const products = await productModel.getAllProducts();
     return products;
@@ -22,6 +28,11 @@ const productService = {
 
   async add({ name }) {
     const product = await productModel.add(name);
+    return product;
+  },
+
+  async edit(id, { name }) {
+    const product = await productModel.edit(id, name);
     return product;
   },
 

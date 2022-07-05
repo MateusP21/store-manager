@@ -23,8 +23,8 @@ const saleModel = {
       date,
       product_id,
       quantity
-    FROM sales_products
-    INNER JOIN sales ON sales.id = sales_products.sale_id
+    FROM StoreManager.sales_products
+    INNER JOIN StoreManager.sales ON StoreManager.sales.id = StoreManager.sales_products.sale_id
     ORDER BY sales_products.sale_id ,sales_products.product_id`;
     const [list] = await db.query(query);
     return list;
@@ -33,8 +33,8 @@ const saleModel = {
   async getSaleById(id) {
     const soldProducts = `
       SELECT date,product_id,quantity
-      FROM sales_products
-      INNER JOIN sales ON sales.id = sales_products.sale_id
+      FROM StoreManager.sales_products
+      INNER JOIN StoreManager.sales ON StoreManager.sales.id = StoreManager.sales_products.sale_id
       WHERE sales.id = ?`;
     const [result] = await db.query(soldProducts, [id]);
     return result;

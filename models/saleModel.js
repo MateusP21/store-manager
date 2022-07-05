@@ -18,17 +18,32 @@ const saleModel = {
 
   async getAllSales() {
     const query = `
-    SELECT *
-    FROM StoreManager.sales_products`;
+    SELECT 
+      sale_id,
+      date,
+      product_id,
+      quantity
+    FROM sales_products
+    INNER JOIN sales ON sales.id = sales_products.sale_id`;
     const list = await db.query(query);
     return list;
   },
 
   async getSaleById(id) {
     const soldProducts = `
-      SELECT product_id,quantity,sale_id FROM sales_products WHERE sale_id = ?`;
+      SELECT date,product_id,quantity
+      FROM sales_products
+      INNER JOIN sales ON sales.id = sales_products.sale_id
+      WHERE sales.id = ?`;
     const [result] = await db.query(soldProducts, [id]);
     return result;
+  },
+
+  async exists(id) {
+    const query = 'SELECT 1 FROM StoreManager.sales WHERE id = ?';
+    const [[item]] = await db.query(query, [id]);
+    const bool = Boolean(item);
+    return bool;
   },
 };
 

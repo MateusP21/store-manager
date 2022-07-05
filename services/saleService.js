@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const { NotFoundError } = require('../errors');
 const saleModel = require('../models/saleModel');
 const runSchema = require('../utils/validationSchema');
 
@@ -17,6 +18,11 @@ const saleService = {
     ),
   ),
 
+  async getAll() {
+    const sale = await saleModel.getAllSales();
+    return sale;
+  },
+
   async add(data) {
     const sale = await saleModel.add(data);
     return sale;
@@ -25,6 +31,11 @@ const saleService = {
   async getById(id) {
     const products = await saleModel.getSaleById(id);
     return products;
+  },
+
+  async checkSale(id) {
+    const exists = await saleModel.exists(id);
+    if (!exists) throw new NotFoundError('Sale not found');
   },
 };
 

@@ -9,12 +9,12 @@ app.use(express.json());
 
 app.use('/products', productRoutes);
 app.use('/sales', saleRoutes);
+app.use(errorHandler);
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
 });
 
-app.use(errorHandler);
 // app.use(errorHandler);
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima

@@ -24,7 +24,8 @@ const saleModel = {
       product_id,
       quantity
     FROM sales_products
-    INNER JOIN sales ON sales.id = sales_products.sale_id`;
+    INNER JOIN sales ON sales.id = sales_products.sale_id
+    ORDER BY sales_products.sale_id ,sales_products.product_id`;
     const [list] = await db.query(query);
     return list;
   },

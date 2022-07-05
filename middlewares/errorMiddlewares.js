@@ -12,7 +12,7 @@ function errorHandler(err, _req, res, _next) {
       res.status(404).json({ message });
       break;
     default:
-      res.status(500).json({ message });
+      res.sendStatus(500);
       break;
   }
 }

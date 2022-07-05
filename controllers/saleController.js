@@ -4,16 +4,8 @@ const saleService = require('../services/saleService');
 
 const saleController = {
   async getAll(_req, res) {
-    const [sales] = await saleService.getAll();
-    const result = sales.map(
-      ({ sale_id: saleId, date, product_id: productId, quantity }) => ({
-        saleId,
-        date,
-        productId,
-        quantity,
-      }),
-    );
-    return res.status(200).json(result);
+    const sales = await saleService.getAll();
+    return res.status(200).json(sales);
   },
 
   async getById(req, res) {

@@ -20,7 +20,16 @@ const saleService = {
 
   async getAll() {
     const sale = await saleModel.getAllSales();
-    return sale;
+    const result = sale.map(
+      ({ sale_id: saleId, date, product_id: productId, quantity }) => ({
+        saleId,
+        date,
+        productId,
+        quantity,
+      }),
+    );
+
+    return result;
   },
 
   async add(data) {

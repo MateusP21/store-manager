@@ -25,7 +25,7 @@ const saleModel = {
       quantity
     FROM sales_products
     INNER JOIN sales ON sales.id = sales_products.sale_id`;
-    const list = await db.query(query);
+    const [list] = await db.query(query);
     return list;
   },
 

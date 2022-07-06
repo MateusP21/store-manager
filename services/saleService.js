@@ -46,6 +46,10 @@ const saleService = {
     const exists = await saleModel.exists(id);
     if (!exists) throw new NotFoundError('Sale not found');
   },
+
+  async delete(id) {
+    await saleModel.delete(id);
+  },
 };
 
 module.exports = saleService;

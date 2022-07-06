@@ -1,6 +1,7 @@
 const { validateBodyAdd } = require('../services/saleService');
 const productService = require('../services/productService');
 const saleService = require('../services/saleService');
+const { validateParamsId } = require('../services/productService');
 
 const saleController = {
   async getAll(_req, res) {
@@ -38,6 +39,13 @@ const saleController = {
       })),
     };
     return res.status(201).json(result);
+  },
+
+  async deleteSale(req, res) {
+    const { id } = await validateParamsId(req.params);
+    await saleService.checkSale(id);
+    await saleService.delete(id);
+    return res.sendStatus(204);
   },
 };
 

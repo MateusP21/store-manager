@@ -16,6 +16,23 @@ const saleModel = {
     return insertId;
   },
 
+  async edit(id, data) {
+    await Promise.all(
+      data.map(async ({ productId, quantity }) => {
+        const query = `
+        UPDATE 
+          StoreManager.sales_products 
+        SET
+          product_id = ?,
+          quantity = ?
+        WHERE 
+          sale_id = ? AND product_id = ?
+        `;
+        await db.query(query, [productId, quantity, id, productId]);
+      }),
+    );
+  },
+
   async getAllSales() {
     const query = `
     SELECT 

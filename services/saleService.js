@@ -46,6 +46,10 @@ const saleService = {
     const exists = await saleModel.exists(id);
     if (!exists) throw new NotFoundError('Sale not found');
   },
+  async edit(id, data) {
+    const sale = await saleModel.edit(id, data);
+    return sale;
+  },
 
   async delete(id) {
     await saleModel.delete(id);

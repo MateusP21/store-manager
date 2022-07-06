@@ -4,6 +4,7 @@ const saleController = require('../controllers/saleController');
 const saleRoutes = Router();
 saleRoutes.get('/', saleController.getAll);
 saleRoutes.post('/', saleController.addSale);
+saleRoutes.put('/:id', saleController.editSale);
 saleRoutes.get('/:id', saleController.getById);
 saleRoutes.delete('/:id', saleController.deleteSale);
 

@@ -31,6 +31,11 @@ const productService = {
     return product;
   },
 
+  async search(name) {
+    const product = await productModel.search(name);
+    return product;
+  },
+
   async edit(id, { name }) {
     const product = await productModel.edit(id, name);
     return product;

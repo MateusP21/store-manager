@@ -37,6 +37,16 @@ const productModel = {
     return list;
   },
 
+  async search(searchedProduct) {
+    const query = `
+    SELECT
+        *
+    FROM products
+    WHERE name LIKE CONCAT('%', ? ,'%')`;
+    const product = await db.query(query, [searchedProduct]);
+    return product;
+  },
+
   async getProductById(id) {
     const query = 'SELECT * FROM StoreManager.products WHERE id = ?';
     const [[product]] = await db.query(query, [id]);
